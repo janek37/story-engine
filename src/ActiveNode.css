@@ -1,0 +1,22 @@
+ul.choices {
+  list-style-type: none;
+  padding: 0;
+  & li::before {
+    content: "> ";
+  }
+  & li.active {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  & li.disabled {
+    color: grey;
+  }
+  & li.visited {
+    color: blue;
+  }
+  & li.completed::after {
+    content: " ✔️";
+  }
+}
