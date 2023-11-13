@@ -9,6 +9,7 @@ function GameLog(): React.ReactElement | null {
   const [nodeIds, setNodeIds] = React.useState<string[]>(["a"])
   const [visitedIds, setVisitedIds] = React.useState<string[] | null>(null)
   const [nodes, setNodes] = React.useState<Nodes | null>(null)
+  const activeNodeRef: React.MutableRefObject<HTMLDivElement | null> = React.useRef(null)
 
   React.useEffect(() => {
     const fetchNodes = async () => {
@@ -30,7 +31,7 @@ function GameLog(): React.ReactElement | null {
     }
   }, [visitedIds])
 
-  React.useEffect(() => window.scrollTo(0, document.body.scrollHeight), [nodeIds])
+  React.useEffect(() => activeNodeRef.current?.scrollIntoView({behavior: "smooth"}), [nodeIds])
 
   const handleChoice = (nodeId: string) => {
     setNodeIds([...nodeIds, nodeId])
@@ -55,14 +56,16 @@ function GameLog(): React.ReactElement | null {
         <LogNode node={nodes[nodeId]} choiceId={nodeIds[index + 1]} />
       </React.Fragment>
     )}
-    <p className={'author'}>{lastNode.author}</p>
-    <ActiveNode
-      node={lastNode}
-      visitedIds={visitedIds}
-      firstNode={nodeIds.length === 1}
-      handleChoice={handleChoice}
-      handleUndo={handleUndo}
-    />
+    <div ref={activeNodeRef}>
+      <p className={'author'}>{lastNode.author}</p>
+      <ActiveNode
+        node={lastNode}
+        visitedIds={visitedIds}
+        firstNode={nodeIds.length === 1}
+        handleChoice={handleChoice}
+        handleUndo={handleUndo}
+      />
+    </div>
   </>
 }
 
