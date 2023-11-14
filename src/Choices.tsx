@@ -1,10 +1,10 @@
-import './ActiveNode.css'
+import './Choices.css'
 import * as React from 'react'
-import {Choice, GameNode} from "./types"
+import {Choice} from "./types"
 
-function ActiveNode(
-  {node, visitedIds, firstNode, handleChoice, handleUndo}: {
-    node: GameNode,
+function Choices(
+  {choices, visitedIds, firstNode, handleChoice, handleUndo}: {
+    choices: Choice[],
     visitedIds: string[] | null,
     firstNode: boolean,
     handleChoice: (nodeId: string) => void,
@@ -17,22 +17,23 @@ function ActiveNode(
       (subchoice) => !subchoice.node || subchoice.nodeId.length < choice.nodeId.length || isChoiceCompleted(subchoice)
     )
   )
-  return <>
-    <div dangerouslySetInnerHTML={{__html: node.text}}/>
-    {!node.choices.length && <><p>The End</p><p><img src={"/skull.gif"} alt={"human skull"} height={50} /></p></>}
+  const getChoiceClassName = (choice: Choice): string => {
+    let className = choice.node ? "active choice" : "disabled"
+    if (isChoiceVisited(choice)) {
+      className += " visited"
+    }
+    if (isChoiceCompleted(choice)) {
+      className += " completed"
+    }
+    return className
+  }
+  return (
     <ul className={"choices"}>
-      {node.choices.map(
+      {choices.map(
         (choice) => {
-          let className = choice.node ? "active choice" : "disabled"
-          if (isChoiceVisited(choice)) {
-            className += " visited"
-          }
-          if (isChoiceCompleted(choice)) {
-            className += " completed"
-          }
           return (
             <li key={choice.nodeId}
-                className={className}
+                className={getChoiceClassName(choice)}
                 onClick={() => (choice.node ? handleChoice(choice.nodeId) : null)}>
               {choice.text}
             </li>
@@ -41,7 +42,7 @@ function ActiveNode(
       )}
       {!firstNode && <li key={'#undo'} className={"active"} onClick={handleUndo}>Undo</li>}
     </ul>
-  </>
+  )
 }
 
-export default ActiveNode
+export default Choices

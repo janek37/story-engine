@@ -1,8 +1,9 @@
 import './GameLog.css'
 import * as React from 'react'
 import type {RawNode, Nodes} from "./types"
-import LogNode from "./LogNode"
-import ActiveNode from "./ActiveNode"
+import NodeContent from "./NodeContent.tsx";
+import PastChoice from "./PastChoice.tsx"
+import Choices from "./Choices.tsx"
 import {parseNodeData} from "./parseNodeData.ts";
 import {useNavigate, useParams} from 'react-router-dom';
 
@@ -67,14 +68,14 @@ function GameLog(): React.ReactElement | null {
   return <>
     {nodeIds.slice(0, -1).map((nodeId, index) =>
       <React.Fragment key={nodeId}>
-        <p className={'author'}>{nodes[nodeId].author}</p>
-        <LogNode node={nodes[nodeId]} choiceId={nodeIds[index + 1]} />
+        <NodeContent gameNode={nodes[nodeId]} />
+        <PastChoice node={nodes[nodeId]} choiceId={nodeIds[index + 1]} />
       </React.Fragment>
     )}
     <div ref={activeNodeRef}>
-      <p className={'author'}>{lastNode.author}</p>
-      <ActiveNode
-        node={lastNode}
+      <NodeContent gameNode={lastNode} />
+      <Choices
+        choices={lastNode.choices}
         visitedIds={visitedIds}
         firstNode={nodeIds.length === 1}
         handleChoice={handleChoice}
