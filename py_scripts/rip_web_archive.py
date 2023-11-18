@@ -61,8 +61,7 @@ class Node(NamedTuple):
 
 def main():
     logging.basicConfig(level=logging.INFO)
-    for node in iterate_nodes():
-        print(node.to_dict())
+    json.dump([node.to_dict() for node in iterate_nodes()], sys.stdout, indent=2, ensure_ascii=False)
 
 
 def iterate_nodes() -> Iterator[Node]:
