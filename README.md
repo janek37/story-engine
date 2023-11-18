@@ -1,27 +1,36 @@
-# React + TypeScript + Vite
+# Story Engine viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React app for viewing archived data of Ryan North's long-defunct Story Engine.
 
-Currently, two official plugins are available:
+The data is not included, but one can obtain it from Wayback Machine using a provided Python script.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting the data
 
-## Expanding the ESLint configuration
+Run the script:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+$ python py_scripts/rip_web_archive.py < py_scripts/archived_urls.json > public/story_engine.json
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+It will take a few hours to complete.
+
+## Running the app (local)
+
+Assuming you have Node.js >= 20:
+
+```bash
+$ npm install
+$ npm run dev
+```
+
+It will start the app at http://localhost:5173/.
+
+## Using the app
+
+The app should be mostly self-explanatory. At each node you have from 0 to 5 choices that progress the story, and (except the first node) an option to undo, which returns you to the previous node.
+
+The choices are in a different color after they've been visited, and they get a check mark after they've been exhausted (every path from them has been visited).
+
+Some choices are disabled and displayed in grey. This is because some nodes have not been created (or at least archived) before the engine was shut down. There are many nodes where all choices are disabled and the only available option is to undo. There are a few cases where a node was not archived, but some of the following ones were. In such cases the node is available, but it has dummy text and choices.
+
+The visited nodes are stored in Local Storage, so you need to clear it if you want to reset your progress.
