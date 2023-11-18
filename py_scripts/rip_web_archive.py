@@ -69,24 +69,29 @@ def iterate_nodes() -> Iterator[Node]:
     # https://web.archive.org/web/timemap/json?url=qwantz.com/storyengine/index.asp&matchType=prefix&collapse=urlkey&output=json&fl=original&filter=!statuscode:[45]..&limit=10000
     archived_urls = json.load(sys.stdin)
     node_ids = [urls[0][urls[0].index('pos=') + 4:] for urls in archived_urls if 'pos=' in urls[0]]
-    node_id_set = set()
+    found_node_ids = []
     for node_id in node_ids:
         logging.info(f"processing node {node_id}")
         if node := get_node(node_id):
             yield node
-            node_id_set.add(node_id)
+            found_node_ids.append(node_id)
 
-    for node_id in node_ids:
+    yield from sorted(get_missing_nodes(found_node_ids), key=lambda n: n["node_id"])
+
+
+def get_missing_nodes(node_ids: list[str]) -> Iterator[Node]:
+    id_set = set(node_ids)
+    for node_id in sorted(node_ids, key=len, reverse=True):
         parent_id = node_id[:-1]
-        if len(node_id) > 1 and parent_id not in node_id_set:
+        if len(node_id) > 1 and parent_id not in id_set:
             child_ids = (
                 child_id
-                for child_id in node_ids
+                for child_id in id_set
                 if len(child_id) == len(node_id) and child_id.startswith(parent_id)
             )
             options = [Option(text=f"Option {i}", node_id=child_id) for i, child_id in enumerate(child_ids, start=1)]
             yield Node(node_id=parent_id, text="Missing node :(", options=options, author="")
-            node_id_set.add(parent_id)
+            id_set.add(parent_id)
 
 
 def get_node(node_id: str) -> Node | None:
