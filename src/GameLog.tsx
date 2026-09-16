@@ -17,7 +17,7 @@ function GameLog(): React.ReactElement | null {
 
   React.useEffect(() => {
     const fetchNodes = async () => {
-      const response = await fetch('/story_engine.json')
+      const response = await fetch(`${import.meta.env.BASE_URL}story_engine.json`)
       const data: RawNode[] = await response.json()
       setNodes(parseNodeData(data))
     }

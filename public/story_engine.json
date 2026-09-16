@@ -1,0 +1,173 @@
+[
+  {
+    "node_id": "a",
+    "text": "Choose a story!",
+    "options": [
+      {
+        "text": "Dinosaurus Rex",
+        "node_id": "aa"
+      },
+      {
+        "text": "The Dog That Sang Songs",
+        "node_id": "ab"
+      },
+      {
+        "text": "Life Simulator",
+        "node_id": "ac"
+      },
+      {
+        "text": "Spooky Mansion: An Adventure for Boys",
+        "node_id": "ad"
+      },
+      {
+        "text": "Everybody Dies!",
+        "node_id": "ae"
+      }
+    ],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aa",
+    "text": "You are a T-Rex, undisputed King of the Dinosaurs! You are out stomping when you see a log cabin!",
+    "options": [
+      {
+        "text": "I believe I'll investigate further! ",
+        "node_id": "aaa"
+      },
+      {
+        "text": "I believe I'll run away! ",
+        "node_id": "aab"
+      }
+    ],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aaa",
+    "text": "As you walk up to the cabin, you notice there are other dinosaurs here.  Nearby, there is a small Dromiceiomimus, watching.  Off in the distance you see what looks like a large Utahraptor.  Utahraptors were the natural enemies of your species.  <br/><br/>A meeting might lead to conflict.",
+    "options": [
+      {
+        "text": "I'm going to try my luck in an encounter with the Utahraptor!",
+        "node_id": "aaaa"
+      },
+      {
+        "text": "I think it's better to play it safe.",
+        "node_id": "aaab"
+      }
+    ],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aaaa",
+    "text": "As you approach, you realize that the Utahraptor is friendly!  The two of you begin a conversation.  Things are going well until he starts to point out flaws in your philosophical beliefs!",
+    "options": [
+      {
+        "text": "No matter, I'll shout something clever after him.",
+        "node_id": "aaaaa"
+      },
+      {
+        "text": "Forget it!  I'm leaving!",
+        "node_id": "aaaab"
+      }
+    ],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aaaaa",
+    "text": "Before you can say anything, a giant meteor strikes the earth!  The impact wipes out 65% of all life, including your own.<br/><br/>Better luck next time!",
+    "options": [],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aaaab",
+    "text": "You try to run away, but the Utahraptor chases after you! Luckily, you end up becoming friends and live happily ever after.",
+    "options": [],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aaab",
+    "text": "You try to run away, but the Utahraptor chases after you!  Luckily, you end up becoming friends and live happily ever after.",
+    "options": [],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aab",
+    "text": "You feel a little disoriented, as if by choosing not to walk towards the log cabin, you are breaking some sort of unwritten law.  You go out exploring.<br/><br/>After some walking, you get tired and lie down for a bit.  You wake up:",
+    "options": [
+      {
+        "text": "refreshed!",
+        "node_id": "aaba"
+      },
+      {
+        "text": "in women's clothing!",
+        "node_id": "aabb"
+      },
+      {
+        "text": "dead!",
+        "node_id": "aabc"
+      }
+    ],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aabb",
+    "text": "That's pretty hot.",
+    "options": [
+      {
+        "text": "I know.",
+        "node_id": "aabba"
+      }
+    ],
+    "author": "ryan"
+  },
+  {
+    "node_id": "aabc",
+    "text": "Just as you are waking up, you have an odd sensation, as if you had a choice to wake up dead or not to wake up dead, and you chose poorly.<br/><br/>Before you can consider this too carefully, however, you wake up dead.",
+    "options": [],
+    "author": "ryan"
+  },
+  {
+    "node_id": "ab",
+    "text": "The dog that sang songs was the happiest dog in the world!",
+    "options": [
+      {
+        "text": "Tell me more!",
+        "node_id": "aba"
+      }
+    ],
+    "author": "ryan"
+  },
+  {
+    "node_id": "ac",
+    "text": "You wake up in bed.  It is a beautiful new day!<br/><br/>Do you want to:",
+    "options": [
+      {
+        "text": "get up",
+        "node_id": "aca"
+      },
+      {
+        "text": "snooze a bit longer",
+        "node_id": "acb"
+      },
+      {
+        "text": "stare at the ceiling",
+        "node_id": "acc"
+      }
+    ],
+    "author": "ryan"
+  },
+  {
+    "node_id": "acc",
+    "text": "As you stare at the ceiling, patterns in the stucco seem to emerge.  <br/><br/>You seem to be staring into an image of your own face!  But something's different:",
+    "options": [
+      {
+        "text": "There's more lines, more sadness in the image.  It's you, but aged something like 30 years!",
+        "node_id": "acca"
+      },
+      {
+        "text": "Your features are changed, youthened.  You look not a day over eight!",
+        "node_id": "accb"
+      }
+    ],
+    "author": "ryan"
+  }
+]
