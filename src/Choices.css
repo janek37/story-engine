@@ -14,7 +14,7 @@ ul.choices {
     color: grey;
   }
   & li.visited {
-    color: blue;
+    color: #339;
   }
   & li.completed::after {
     content: " ✔️";
